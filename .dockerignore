@@ -1,0 +1,8 @@
+### Python template
+.idea/
+.cache/
+kube/
+terraform/
+README.md
+
+.gitignore

@@ -1,0 +1,14 @@
+resources:
+  - ../../base
+
+namespace: weather-checker
+
+images:
+  - name: hemraj43/weather-checker
+    newName: hemraj43/weather-checker
+    newTag: 0.0.1   #can be captured from pipeline
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Temperature Checker</title>
+</head>
+<body>
+<h1>City Temperature Checker</h1>
+<form method="POST" action="/">
+    <label for="city">Enter City Name:</label>
+    <input type="text" id="city" name="city" required>
+    <button type="submit">Get Temperature</button>
+</form>
+
+{% if temperature %}
+<h2>
+    Temperature: {{ temperature }} {% if cached %}(cached){% endif %}
+</h2>
+{% endif %}
+</body>
+</html>
