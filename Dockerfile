@@ -23,8 +23,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Expose the application port
 EXPOSE 5000
 
-# Set the command to run the application
-#ENTRYPOINT ["python", "main.py"]
-
 # Use Gunicorn to serve the application
 CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5000", "main:app"]

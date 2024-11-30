@@ -7,11 +7,12 @@ terraform {
       version = ">=5.50.0"
     }
   }
+
+  # S3 backend can be used to store terraform state
   # backend "s3" {
   #   bucket         = "S3-bucket-name"
   #   dynamodb_table = "terraform"
   #   key            = "weather-checker"
-  #   region         = "eu-central-1"
   # }
 }
 

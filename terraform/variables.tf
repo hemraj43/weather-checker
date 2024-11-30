@@ -21,12 +21,6 @@ variable "public_key" {
   default     = ""
 }
 
-
-variable "vpc_id" {
-  type = string
-  default = ""
-}
-
 variable "sg_name" {
   type = string
   description = "name of security group."
