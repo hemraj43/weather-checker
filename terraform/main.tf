@@ -42,12 +42,24 @@ resource "aws_instance" "ec2" {
     source      = "main.py"
     destination = "/app/"
   }
+  provisioner "file" {
+    source      = "requirements.txt"
+    destination = "/app/"
+  }
 
   provisioner "remote-exec" {
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = aws_key_pair.key_pair
+      host        = self.public_ip
+
+    }
     inline = [
       "sudo mkdir -p /app",
-      "sudo apt install pip",
-      "pip install requests diskcache flask gunicorn",
+      "sudo apt install python-pip",
+      "cd /app",
+      "pip install --no-cache-dir -r requirements.txt",
       "gunicorn -w 1 -b 0.0.0.0:5000 main:app"
     ]
   }
