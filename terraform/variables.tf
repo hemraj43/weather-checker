@@ -22,7 +22,7 @@ variable "public_key" {
 }
 
 variable "sg_name" {
-  type = string
+  type        = string
   description = "name of security group."
 }
 

@@ -46,6 +46,10 @@ def index():
 
     return render_template("index.html", temperature=temperature, cached=cached)
 
+@app.route("/health", methods=["GET"], status_code=status.HTTP_200_OK, response_model=HealthCheck)
+
+
+
 # Run the Flask app
 if __name__ == "__main__":
     app.run()
