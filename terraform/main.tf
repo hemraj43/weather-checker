@@ -15,6 +15,24 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+# Create a VPC
+resource "aws_vpc" "vpc" {
+  cidr_block = "10.0.0.0/16"
+}
+
+# Public Subnet
+resource "aws_subnet" "public" {
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = "10.0.1.0/24"
+}
+
+# Private Subnet
+resource "aws_subnet" "private" {
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = "10.0.2.0/24"
+}
+
+# Create AWS key pair for EC2
 resource "aws_key_pair" "key_pair" {
   key_name   = var.key_pair_name
   public_key = var.public_key
@@ -49,6 +67,8 @@ resource "aws_instance" "ec2" {
   key_name                    = var.key_pair_name
   security_groups             = [aws_security_group.sg.id]
   depends_on                  = [aws_key_pair.key_pair]
+  subnet_id                   = aws_subnet.private.id
+
   # copy all templates and python files to ec2 instance
   provisioner "file" {
     source      = "../templates"
