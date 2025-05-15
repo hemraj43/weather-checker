@@ -61,7 +61,7 @@ resource "aws_security_group" "sg" {
 }
 
 resource "aws_instance" "ec2" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.ubuntu.id  #  for_each      = toset(["instance1", "instance2", "instance3"])
   instance_type               = var.instance_type
   associate_public_ip_address = true
   key_name                    = var.key_pair_name
